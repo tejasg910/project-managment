@@ -46,7 +46,7 @@ export async function GET(request, { params }) {
 // PUT - Update a specific project
 export async function PUT(request, { params }) {
   try {
-    const { id } = params;
+    const { id } = await params;
     const data = getProjects();
     const updatedFields = await request.json();
     
