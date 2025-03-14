@@ -1,4 +1,3 @@
-// components/ProjectList.jsx
 "use client";
 
 import { useState, useMemo } from "react";
@@ -12,11 +11,10 @@ import {
   getFilteredRowModel,
 } from "@tanstack/react-table";
 import ProjectModal from "./ProjectModal";
-import { useSWRProjects } from "@/hooks/useProject";
-import { Pencil, Trash, ArrowUpDown, ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, Search } from 'lucide-react';
+import { useProjectsFetch, useSWRProjects } from "@/hooks/useProject";
+import { Pencil, Trash, ArrowUpDown, ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, Search, Plus, RefreshCcw } from 'lucide-react';
 import { useConfirm } from "@/hooks/useConfirm";
 import { useProjectDelete } from "@/hooks/useProjectDelete";
-import { useToast } from "@/hooks/useToast";
 import { useDebounce } from "@/hooks/useDebounce";
 
 export default function ProjectList() {
@@ -39,7 +37,7 @@ export default function ProjectList() {
 
   const [confirm, ConfirmModal] = useConfirm("Are you sure you want to delete this project?");
   const { deleteProject } = useProjectDelete();
-  const { projects: allData, isLoading, isError, mutate } = useSWRProjects();
+  const { projects: allData, isLoading, isError,  mutate } = useSWRProjects();
 
   const columnHelper = createColumnHelper();
   
@@ -163,12 +161,22 @@ export default function ProjectList() {
     <div className="bg-white rounded-lg shadow-sm p-6">
       <div className="flex justify-between mb-4">
         <h2 className="text-xl font-semibold text-gray-800">Projects</h2>
+        <div className="flex gap-1">
+
+      
         <button
           onClick={openAddModal}
-          className="px-4 py-2 cursor-pointer rounded font-medium transition duration-200 flex items-center bg-primary-600 text-white hover:bg-primary-700"
+          className="p-1 rounded-full cursor-pointer  font-medium transition duration-200 flex items-center bg-primary-600 text-white hover:bg-primary-700"
         >
-          <span>Add Project</span>
+          <Plus/>
         </button>
+        <button
+          onClick={()=>mutate()}
+          className={`p-1 rounded-full cursor-pointer  font-medium transition duration-200 flex items-center bg-gray-600 text-white hover:bg-gray-700 ${isLoading ? "animate-spin" :""}`}
+        >
+      <RefreshCcw/>
+        </button>
+        </div>
       </div>
       
       <div className="mb-4">
@@ -245,7 +253,16 @@ export default function ProjectList() {
                 </td>
               </tr>
             </tbody>
-          ) : (
+          ) : isError ?  <tbody>
+          <tr>
+            <td colSpan={columns.length} className="px-6 py-12 text-center text-gray-500">
+              <div className="flex items-center justify-center">
+                <div className="w-6 h-6 border-t-2 border-b-2 border-primary-600 rounded-full animate-spin"></div>
+                <span className="ml-2">Error while fetching projects</span>
+              </div>
+            </td>
+          </tr>
+        </tbody> : (
             <tbody className="bg-white divide-y divide-gray-200">
               {table.getRowModel().rows.length > 0 ? (
                 table.getRowModel().rows.map(row => (
@@ -353,7 +370,7 @@ export default function ProjectList() {
         isOpen={isOpen}
         setIsOpen={setIsOpen}
         project={editProject}
-        onSuccess={() => mutate()}
+        onSuccess={mutate}
       />
     </div>
   );

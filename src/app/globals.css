@@ -17,35 +17,3 @@
  
 
 }
-
-
-@layer{
-  .btn {
-    @apply px-4 py-2 rounded font-medium transition duration-200;
-  }
-  
-  .btn-primary {
-    @apply btn bg-primary-600 text-white hover:bg-primary-700;
-  }
-  
-  .btn-secondary {
-    @apply btn bg-white text-gray-800 border border-gray-300 hover:bg-gray-100;
-  }
-  
-  .btn-danger {
-    @apply btn bg-red-600 text-white hover:bg-red-700;
-  }
-  
-  .form-input {
-    @apply w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500;
-  }
-  
-  .form-label {
-    @apply block text-sm font-medium text-gray-700 mb-1;
-  }
-  
-  .form-error {
-    @apply text-sm text-red-600 mt-1;
-  }
-
-}

@@ -1,7 +1,6 @@
-// components/ProjectModal.jsx
 "use client";
 
-import { Fragment, useEffect } from "react";
+import { Fragment, useEffect, useTransition } from "react";
 import { Dialog, DialogPanel, DialogTitle, Transition } from "@headlessui/react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -22,8 +21,8 @@ export default function ProjectModal({
   isOpen,
   setIsOpen,
   project,
-  onAddProject,
-  onUpdateProject,
+  onSuccess
+
 }) {
   const {
     register,
@@ -39,9 +38,9 @@ export default function ProjectModal({
     },
   });
 
-
-  const {createProject }  = useProjectCreate();
-  const {updateProject} = useProjectUpdate()
+const [_, startTransition] = useTransition()
+  const {createProject , loading, createLoading}  = useProjectCreate();
+  const {updateProject, loading: updateLoading} = useProjectUpdate();
 const {showError} = useToast()
   useEffect(() => {
     if (project) {
@@ -64,11 +63,20 @@ const {showError} = useToast()
       if (project) {
         // Update existing project
      
-        await updateProject(project)
-        
+        await updateProject({...data, id: project?.id});
+
+        startTransition(()=>{
+          onSuccess()
+        })
       } else {
        await  createProject(data)
+      
+       startTransition(()=>{
+        onSuccess()
+      })
       }
+
+      
     } catch (error) {
 showError("Error while performing this action")
     }
@@ -152,8 +160,8 @@ showError("Error while performing this action")
                     >
                       Cancel
                     </button>
-                    <button type="submit" className="cursor-pointer bg-primary-600 text-white hover:bg-primary-700 px-4 py-2 rounded font-medium transition duration-200 ">
-                      {project ? "Update" : "Save"}
+                    <button disabled={createLoading || updateLoading} type="submit" className={`cursor-pointer bg-primary-600 text-white hover:bg-primary-700 px-4 py-2 rounded font-medium transition duration-200 ${(createLoading || updateLoading) ? "cursor-not-allowed" : ""} `}>
+                      {(createLoading || updateLoading) ? "Loading" :    project ? "Update" : "Save"}
                     </button>
                   </div>
                 </form>

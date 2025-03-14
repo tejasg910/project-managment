@@ -1,5 +1,4 @@
 
-// useProjectUpdate.js - Hook for updating projects
 import { useState } from 'react';
 import { useToast } from './useToast';
 

@@ -1,6 +1,5 @@
 
 
-// useProjectDelete.js - Hook for deleting projects
 import { useState } from 'react';
 import { useToast } from './useToast';
 

@@ -1,5 +1,5 @@
-import { Fragment, useState } from "react"
-import { Dialog, DialogPanel, DialogTitle, Transition , useClose} from "@headlessui/react";
+import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
+import { useState } from "react";
 
 export const useConfirm = ( text)=>{
     const [promise, setPromise] = useState(null);

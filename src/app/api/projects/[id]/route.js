@@ -1,23 +1,18 @@
-// app/api/projects/[id]/route.js
 import { NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
 
-// Path to JSON file
 const dataFilePath = path.join(process.cwd(), "src/data", "projects.json");
 
-// Helper function to read project data
 function getProjects() {
   const fileContents = fs.readFileSync(dataFilePath, "utf8");
   return JSON.parse(fileContents);
 }
 
-// Helper function to write project data
 function saveProjects(data) {
   fs.writeFileSync(dataFilePath, JSON.stringify(data, null, 2), "utf8");
 }
 
-// GET - Get a specific project
 export async function GET(request, { params }) {
   try {
     const { id } = await params;
@@ -43,12 +38,14 @@ export async function GET(request, { params }) {
   }
 }
 
-// PUT - Update a specific project
 export async function PUT(request, { params }) {
   try {
     const { id } = await params;
     const data = getProjects();
     const updatedFields = await request.json();
+
+
+    console.log(updatedFields, "This is updated fields")
     
     const projectIndex = data.projects.findIndex(p => p.id === id);
     
@@ -59,7 +56,6 @@ export async function PUT(request, { params }) {
       );
     }
     
-    // Update project fields
     data.projects[projectIndex] = {
       ...data.projects[projectIndex],
       ...updatedFields,
@@ -76,7 +72,6 @@ export async function PUT(request, { params }) {
   }
 }
 
-// DELETE - Delete a specific project
 export async function DELETE(request, { params }) {
   try {
     const { id } = await params;
@@ -91,7 +86,6 @@ export async function DELETE(request, { params }) {
       );
     }
     
-    // Remove the project
     data.projects.splice(projectIndex, 1);
     saveProjects(data);
     
