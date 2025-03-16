@@ -2,7 +2,7 @@
 
 A modern web application for managing projects, built with Next.js, Tailwind CSS, and Clerk authentication.
 
-![Project Management Dashboard](https://placeholder-image.com/dashboard-screenshot.png)
+![Project Management Dashboard](https://prnt.sc/7KtoHFKmwfGp)
 
 ## Features
 
@@ -36,7 +36,7 @@ A modern web application for managing projects, built with Next.js, Tailwind CSS
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/project-management.git
+   git clone https://github.com/tejasg910/project-managment.git
    cd project-management
    ```
 
