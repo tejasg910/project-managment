@@ -2,7 +2,6 @@
 
 A modern web application for managing projects, built with Next.js, Tailwind CSS, and Clerk authentication.
 
-![Project Management Dashboard](https://prnt.sc/7KtoHFKmwfGp)
 
 
 ## Features
@@ -69,19 +68,17 @@ project-management/
 ├── app/                  # Next.js app directory
 │   ├── api/              # API routes
 │   │   └── projects/     # Project API endpoints
-│   ├── dashboard/        # Dashboard page
 │   ├── globals.css       # Global styles
 │   ├── layout.js         # Root layout
 │   └── page.js           # Home/login page
 ├── components/           # React components
 │   ├── Navbar.jsx        # Navigation bar
-│   ├── ProjectForm.jsx   # Project form component
 │   ├── ProjectList.jsx   # Project listing with search & sort
 │   └── ProjectModal.jsx  # Modal for adding/editing projects
 ├── data/                 # Data storage
 │   └── projects.json     # JSON file for project data
 ├── middleware.js         # Auth middleware
-└── tailwind.config.js    # Tailwind configuration
+└── globals.css           # Tailwind configuration
 ```
 
 ## Usage
@@ -107,13 +104,11 @@ project-management/
 - **Multi-field Search**: The search function checks project name, address, and city
 - **Case Insensitive**: Searches are case-insensitive for better user experience
 - **Sorting**: Click on any column header to sort ascending/descending
-- **Multiple Sorts**: Hold Shift while clicking column headers for multi-column sorting
 
 ## API Endpoints
 
 - `GET /api/projects` - Get all projects
 - `POST /api/projects` - Create a new project
-- `GET /api/projects/[id]` - Get a specific project
 - `PUT /api/projects/[id]` - Update a specific project
 - `DELETE /api/projects/[id]` - Delete a specific project
 
