@@ -4,6 +4,7 @@ A modern web application for managing projects, built with Next.js, Tailwind CSS
 
 ![Project Management Dashboard](https://prnt.sc/7KtoHFKmwfGp)
 
+
 ## Features
 
 - **User Authentication**: Secure login and registration using Clerk
@@ -16,7 +17,7 @@ A modern web application for managing projects, built with Next.js, Tailwind CSS
 
 ## Tech Stack
 
-- **Framework**: Next.js 14 (App Router)
+- **Framework**: Next.js 15 (App Router)
 - **Styling**: Tailwind CSS
 - **Authentication**: Clerk
 - **UI Components**:
