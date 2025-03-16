@@ -94,7 +94,7 @@ project-management/
 - **View Projects**: All projects are displayed in a table on the dashboard
 - **Search**: Use the search bar to filter projects by name, address, or city
 - **Sort**: Click on column headers to sort projects
-- **Add Project**: Click the "Add Project" button to create a new project
+- **Add Project**: Click the "Plus icon" button to create a new project
 - **Edit Project**: Click "Edit" on any project row to modify its details
 - **Delete Project**: Click "Delete" on any project row to remove it
 
