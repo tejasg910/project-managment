@@ -2,7 +2,7 @@
 
 A modern web application for managing projects, built with Next.js, Tailwind CSS, and Clerk authentication.
 
-![Project Management Dashboard](https://prnt.sc/7KtoHFKmwfGp)
+![Project Management Dashboard](https://drive.google.com/file/d/1fRwtwMTffscFH_9DRH6krcZnj1vaHAeC/view?usp=sharing)
 
 
 ## Features
